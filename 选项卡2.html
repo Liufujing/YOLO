@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>选项卡（隐藏）</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width:600px;
+            height: 400px;
+            margin:50px auto;
+        }
+        #nav{
+            height: 60px;
+        }
+        #nav li {
+            float: left;
+            width: 120px;
+            height: 60px;
+            background: #ccc;
+            margin-right:10px;
+            text-align: center;
+            line-height: 60px;
+        }
+        #nav .selected{
+            background: #000;
+            color:#fff;
+        }
+        #content{
+            border-top: 1px solid #000;
+            background:gray;
+            height:340px;
+        }
+        #content div{
+            display: none;
+        }
+        #content div.selected{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="nav">
+        <li class="selected">js</li>
+        <li>html</li>
+        <li>css</li>
+    </ul>
+    <div id="content">
+        <div class="selected">1111</div>
+        <div>2222</div>
+        <div>3333</div>
+    </div>
+</div>
+<script>
+    /* var data = ["1111","2222","3333"];*/
+    var aLi = document.getElementsByTagName('li');
+    var oContent = document.getElementById('content');
+    var aDiv = oContent.getElementsByTagName('div');
+    for (var i = 0; i < aLi.length; i++) {
+        aLi[i].index = i;
+        aLi[i].onclick = function () {
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].className = '';
+                aDiv[i].className = '';
+            }
+           /* for(var j = 0; j < aDiv.length; j++){
+                aDiv[j].className = ''
+            }*/
+            this.className = "selected";
+            aDiv[this.index].className = "selected";
+            /*oContent.innerHTML = data[this.index];*/
+        }
+    }
+</script>
+
+</body>
+</html>
