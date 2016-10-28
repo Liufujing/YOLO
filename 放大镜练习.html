@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border:0;
+        }
+
+        #small{
+            float:left;
+            width:200px;
+            height:200px;
+            position:relative;
+            top:0;
+            left:0;
+        }
+        #drag{
+            background:#ccc;
+            width:50px;
+            height:50px;
+            position:absolute;
+            top:0;
+            left:0;
+            filter:alpha(opacity=50);
+            opacity:0.5;
+            border:1px solid #000;
+            display:none;
+            cursor:pointer;
+
+        }
+        #big{
+            float:left;
+            width:200px;
+            height:200px;
+            position:relative;
+            top:0;
+            overflow:hidden;
+            display:none;
+        }
+        #big-pic{
+            position:absolute;
+        }
+        #mars{
+
+            width:200px;
+            height:200px;
+            position:absolute;
+            top:0;
+            left:0;
+            opacity:0;
+            filter:alpha(opacity=0);
+            z-index:1;
+            background:#ccc;
+        }
+    </style>
+</head>
+<body>
+        <div id="small">
+            <div id="drag"></div>
+            <img src="img/10s.jpg" alt=""/>
+            <div id="mars"></div>
+        </div>
+        <div id="big">
+            <img id="big-pic" src="img/10.jpg" alt=""/>
+        </div>
+        <script>
+            var oDrag = document.getElementById('drag');
+            var oSmall = document.getElementById('small'),
+                    oBig = document.getElementById('big'),
+                    oBigPic = document.getElementById('big-pic'),
+                    oMars = document.getElementById('mars');
+
+            oMars.onmouseover  = function(){
+                oDrag.style.display = 'block';
+                oBig.style.display = 'block';
+            };
+            oMars.onmousemove = function(e){
+                e = e || window.event;
+                var iLeft = e.clientX-oDrag.offsetWidth/2;
+                var iTop = e.clientY-oDrag.offsetHeight/2;
+                if(iLeft < 0){
+                    iLeft= 0
+                }else if(iLeft>oSmall.offsetWidth - oDrag.offsetWidth)
+                {
+                   iLeft = oSmall.offsetWidth - oDrag.offsetWidth
+                }
+                if(iTop < 0){
+                    iTop= 0
+                }else if(iTop>oSmall.offsetHeight - oDrag.offsetHeight)
+                {
+                    iTop = oSmall.offsetHeight - oDrag.offsetHeight
+                }
+                oDrag.style.left = iLeft + "px";
+                oDrag.style.top = iTop + "px";
+                var fsCaleX = iLeft/(oSmall.offsetWidth - oDrag.offsetWidth),
+                        fsCaleY =  iTop /(oSmall.offsetHeight - oDrag.offsetHeight);
+                oBigPic.style.left =- fsCaleX * (oBigPic.offsetWidth - oBig.offsetWidth) +"px";
+                oBigPic.style.top = -fsCaleY * (oBigPic.offsetHeight - oBig.offsetHeight) +"px";
+            };
+            oMars.onmouseout = function(){
+                oDrag.style.display = 'none';
+                oBig.style.display = 'none';
+            };
+        </script>
+</body>
+</html>

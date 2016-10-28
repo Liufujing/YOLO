@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            #container{
+                width:400px;
+                height:500px;
+                background:#ccc;
+               position:relative;
+                margin:100px auto;
+                overflow:hidden;
+            }
+            #content{
+                width:390px;
+                background:gray;
+                position:absolute;
+                left:0;
+            }
+            #scroll-bar{
+                width:10px;
+                height:500px;
+                position:absolute;
+                right:0;
+            }
+            #scroll-btn{
+                width:10px;
+                height:20px;
+                background:#696;
+                position:absolute;
+                top:0;
+                left:0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="content">
+                Bigbang五位成员G-Dragon、TaeYang、SeungRi、DaeSung和TOP在小学六年级时便加入YG 然后一直接受严格训练之后 Bigbang被选中作为Se7en的伴舞接受Se7en的训练.
+                2006年8月19日 在韩国首尔奥林匹克竞技场举行的YG Family世界巡回演唱会首尔站上 Bigbang正式出道之后跟TONY AN的校服公司SKOOLOOKS正式签下了为期6个月的广告代言合同8月30日 MBC的音乐银行 给了他们长达8分钟的舞台 五个人的介绍DANSE和两首歌的完整现场表演。第一张同名单曲《BIG BANG》发行的第12天 9月10日 他们举办了首次的歌迷见面会 5天后又迎来了首次showcase 之后开始了正式的宣传。9月23日 Bigbang在MBC MusicCore正式以新人身份登上舞台。9月28日 Bigbang发行第二张单曲《BigBangis VIP》。二单发行后不到一个月 Bigbang与FILA签订3个月的代言合同 并在11月获得CY World选定“10月的新人” 11月22日 Bigbang发行第三张单曲《Bigbang03》。11月25日 Bigbang入围2006 Mnet KM Music Festival最佳新组合赏。12月22日 Bigbang发行首张正规专辑《BIGBANGVOL.1 SINCE2007》。12月30日 Bigbang在首尔蚕室体操竞技场举办第一次单独演唱会“THE REAL” 由此 官方歌迷会“VIP”成立。在2006年底MBC的歌谣大对决的现场 Bigbang作为开场的表演嘉宾 演唱了《BIGBANG》 《LA LALA》 《V I P》的串烧版
+                Bigbang五位成员G-Dragon、TaeYang、SeungRi、DaeSung和TOP在小学六年级时便加入YG 然后一直接受严格训练。之后 Bigbang被选中作为Se7en的伴舞接受Se7en的训练
+                2006年8月19日 在韩国首尔奥林匹克竞技场举行的YG Family世界巡回演唱会首尔站上 Bigbang正式出道。之后跟TONY AN的校服公司SKOOLOOKS正式签下了为期6个月的广告代言合同8月30日 MBC的音乐银行 给了他们长达8分钟的舞台 五个人的介绍DANSE和两首歌的完整现场表演。第一张同名单曲《BIG BANG》发行的第12天 9月10日 他们举办了首次的歌迷见面会 5天后又迎来了首次showcase 之后开始了正式的宣传。9月23日 Bigbang在MBC MusicCore正式以新人身份登上舞台。9月28日 Bigbang发行第二张单曲《BigBangis VIP》。二单发行后不到一个月 Bigbang与FILA签订3个月的代言合同 并在11月获得CY World选定“10月的新人” 11月22日 Bigbang发行第三张单曲《Bigbang03》。11月25日 Bigbang入围2006 Mnet KM Music Festival最佳新组合赏。12月22日 Bigbang发行首张正规专辑《BIGBANGVOL.1 SINCE2007》。12月30日 Bigbang在首尔蚕室体操竞技场举办第一次单独演唱会“THE REAL” 由此 官方歌迷会“VIP”成立。在2006年底MBC的歌谣大对决的现场 Bigbang作为开场的表演嘉宾 演唱了《BIGBANG》 《LA LALA》 《V I P》的串烧版。
+            </div>
+            <div id="scroll-bar">
+                <div id="scroll-btn" ></div>
+            </div>
+        </div>
+        <script>
+            var oContainer = document.getElementById('container'),
+                    oContent = document.getElementById('content'),
+                    oScrollBar = document.getElementById('scroll-bar'),
+                    oScrollBtn = document.getElementById('scroll-btn');
+            document.onmousedown = function(e){
+                e = e || window.event;
+                var iDisY = e.clientY - oScrollBtn.offsetTop;
+                document.onmousemove = function(e) {
+                    e = e || window.event;
+                    var top = e.clientY - iDisY;
+                    if(top < 0){
+                        top = 0
+                    }else if(top>oScrollBar.offsetHeight - oScrollBtn.offsetHeight){
+                        top = oScrollBar.offsetHeight - oScrollBtn.offsetHeight
+                    }
+                    oScrollBtn.style.top = top + "px";
+                    var fScale = top/(oScrollBar.offsetHeight - oScrollBtn.offsetHeight);
+                    oContent.style.top =-(oContent.offsetHeight - oContainer.offsetHeight)* fScale +'px';
+                return false;
+                }
+            };
+            document.onmouseup = function(){
+                document.onmousemove = null;
+            }
+        </script>
+    </body>
+</html>
