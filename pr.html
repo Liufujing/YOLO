@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width:600px;
+            height: 400px;
+            margin:50px auto;
+        }
+        #nav{
+            height: 60px;
+        }
+        #nav li {
+            float: left;
+            width: 120px;
+            height: 60px;
+            background: #ccc;
+            margin-right:10px;
+            text-align: center;
+            line-height: 60px;
+        }
+        #nav .selected{
+            background: #000;
+            color:#fff;
+        }
+        #content{
+            border-top: 1px solid #000;
+            background:gray;
+            height:340px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="nav">
+            <li class="selected">js</li>
+            <li>html</li>
+            <li>css</li>
+        </ul>
+        <div id="content">
+            1111
+        </div>
+    </div>
+    <script>
+        var data = [1111,2222,3333];
+        var oNav = document.getElementById('nav');
+        var aLi = oNav.getElementsByTagName('li');
+        var oContent = document.getElementById('content');
+        for(i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function() {
+                for (i = 0; i < aLi.length; i++) {
+                    aLi[i].className = "";
+                }
+                this.className = "selected";
+                oContent.innerHTML = data[this.index];
+            }
+        }
+    </script>
+</body>
+</html>
