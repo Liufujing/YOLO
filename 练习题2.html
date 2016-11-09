@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+    <body>
+
+    <form>
+        <select name="myselect" id="mySelect">
+            <option value="volvo">-哈尔滨-</option>
+            <option value="saab">南岗区</option>
+            <option value="fiat">道里区</option>
+            <option value="audi">道外区</option>
+            <option value="shen">松北区</option>
+            <br/>
+            <input type="text" name="文本" />
+            <input type="text" name="值" />
+        </select>
+    </form>
+    <script>
+        function getOptions(){
+            var x = document.getElementById('mySelect');
+            var y = '';
+            for(var i=0;i<x.length;i++){
+                y = x.options[i].text;
+            }
+        }
+    </script>
+
+    </body>
+</html>

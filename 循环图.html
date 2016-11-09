@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style:none;
+        }
+        #contaient{
+            width:465px;
+            height:300px;
+            /*padding:10px;*/
+            border:1px solid #000;
+           /* background:yellow;*/
+            position:relative;
+            margin:100px auto;
+            overflow: hidden;
+        }
+        #content{
+
+           /* width:1240px;
+            height:200px;*/
+            /*background:green;*/
+            position:absolute;
+
+        }
+        #tab{
+            position:absolute;
+        }
+        #tab li{
+            float:left;
+            width:150px;
+            height:200px;
+            margin-right:5px;
+            background:#000;
+            color:#fff;
+            text-align:center;
+            line-height:200px;
+            font-size:40px;
+        }
+        #arrow{
+            width:465px;
+            height:100px;
+            position:absolute;
+            bottom:0;
+            left:200px;
+        }
+        #arrow span{
+            width:100px;
+            height:40px;
+            text-align:center;
+            line-height:40px;
+            margin-right:5px;
+            background:gray;
+
+        }
+
+    </style>
+    </head>
+    <body>
+        <div id="contaient">
+            <div id="content">
+                <ul id="tab">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <!--<li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>-->
+                </ul>
+            </div>
+            <div id="arrow">
+                <span id="prew">&lt&lt向左</span>
+                <span id="next">向右&gt&gt</span>
+            </div>
+        </div>
+        <script>
+            var oContainer = document.getElementById('container'),
+                    oContent = document.getElementById('content'),
+                    oTab = document.getElementById('tab'),
+                    oPrew = document.getElementById('prew'),
+                    oNext = document.getElementById('next');
+            var aLi = oTab.getElementsByTagName('li');
+
+            oTab.innerHTML = oTab.innerHTML +oTab.innerHTML;
+            oContent.style.width = aLi.length * (aLi[0].offsetWidth + 5) + "px";
+            /*oContent.style.height = aLi[0].offsetHeight;*/
+
+            var timer = null;
+            oPrew.onmouseover = function(){
+                StartMove(-5,50);
+            };
+            oNext.onmouseover = function(){
+                StartMove(5,50);
+            };
+            function StartMove(step,times) {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    if (oContent.offsetLeft <= -oContent.offsetWidth / 2) {
+                        oContent.style.left = 0 + "px"
+                    }else if(oContent.offsetLeft >= 0){
+                        oContent.style.left = -oContent.offsetWidth / 2 +"px"
+                    }
+                    oContent.style.left = oContent.offsetLeft +step + "px"
+                },times);
+            }
+
+        </script>
+    </body>
+</html>
