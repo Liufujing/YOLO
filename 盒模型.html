@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            display: -webkit-flex;
+            flex-direction:column;
+            width: 1002px;
+            height:900px;
+            margin: 0 auto;
+        }
+        #head{
+            width: 1002px;
+            background: #0000ff;
+            height:50px;
+        }
+        #content{
+            background: yellow;
+            flex-grow:1
+        }
+        #foot{
+            width: 1002px;
+            background: #ff0000;
+            height:50px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="container">
+        <li id="head"></li>
+        <li id="content"></li>
+        <li id="foot"></li>
+    </ul>
+</body>
+</html>
