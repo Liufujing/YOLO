@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            width:42px;
+            height:42px;
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            -webkit-perspective: 800px;
+        }
+
+        #nav img{
+            width:42px;
+            height:42px;
+            position:absolute;
+            -webkit-transition: -webkit-transform .8s ease;
+        }
+        #home{
+            position:absolute;
+            -webkit-transition: -webkit-transform 1s linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <div id="nav">
+            <img src="img/close.png" alt="" id="close"/>
+            <img src="img/full.png" alt="" id="full"/>
+            <img src="img/open.png" alt="" id="open"/>
+            <img src="img/prev.png" alt="" id="prev"/>
+            <img src="img/refresh.png" alt="" id="refresh"/>
+         </div>
+        <img src="img/home.png" alt="" id="home"/>
+    </div>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oHome = document.getElementById('home');
+        var oNav = document.getElementById('nav');
+        var aImg = oNav.getElementsByTagName('img');
+        var iNow = 0;
+        var bFlag = false;
+        oHome.onclick = function(){
+            iNow = iNow+1;
+            var a = iNow%2;
+            if(a == 1){
+                this.style.WebkitTransform = "rotateZ("+-360+"deg)";
+                for(var i=0; i<aImg.length;i++) {
+                    var du = i * Math.PI / 8;
+                    var mX = 150 * Math.sin(du);
+                    var mY = 150 * Math.cos(du);
+                    aImg[i].style.WebkitTransitionDelay = i*40 +'ms';
+                    aImg[i].style.WebkitTransform = " translateX(" + -mX + "px) translateY(" + -mY + "px) rotate(" + 360 + "deg)";
+                }
+            }else {
+                    for (var i = 0; i < aImg.length; i++) {
+                        aImg[i].style.WebkitTransitionDelay = (aImg.length - i)*40 +'ms';
+                        aImg[i].style.WebkitTransform = "  translateX(" + 0 + "px) translateY(" + 0 + "px) rotate(" + 0 + "deg)";
+                    }
+                this.style.WebkitTransform = "rotateZ("+0+"deg)";
+                }
+            };
+        for(var j = 0; j<aImg.length; j++){
+            aImg[j].onclick= function(){
+                var currTransform = this.style.WebkitTransform;
+                this.style.WebkitTransitionDuration = ".3s";
+                this.style.WebkitTransform = currTransform + ' scale(2)';
+                this.style.opacity = 0.3;
+                var fn = function(){
+                    this.style.WebkitTransform = currTransform;
+                    this.style.opacity = 1;
+                    this.removeEventListener('webkitTransitionEnd',fn);
+                };
+                this.addEventListener('webkitTransitionEnd',fn,false);
+            }
+        }
+    </script>
+</body>
+</html>
