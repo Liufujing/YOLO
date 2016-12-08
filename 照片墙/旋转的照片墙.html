@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            html{
+                width:100%;
+                height:100%;
+            }
+            body{
+                width:100%;
+                height:100%;
+            }
+            #container{
+                width:100%;
+                height:100%;
+                position:relative;
+                background: url('img/bg.jpg');
+            }
+            #container .img{
+                width:125px;
+                height:125px;
+                border:5px solid #fff;
+                position:absolute;
+                top:-150px;
+                left:-150px;
+                -webkit-transition: all 2s ease-in-out;
+            }
+            #container .img span{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                opacity: 0;
+                -webkit-transition: opacity 1.5s ease-in-out;
+            }
+            #prev,#next{
+                width:30px;
+                height:60px;
+                position:absolute;
+                top:50%;
+                margin-top: 30px;
+                display: none;
+
+            }
+            #next{
+                background: url('img/next.png') center no-repeat #fff;
+                right:0;
+                border-radius:6px 0 0 6px;
+            }
+            #prev{
+                background: url('img/prev.png') center no-repeat #fff;
+                left:0;
+                border-radius: 0 6px 6px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+
+        </div>
+        <div id="prev"></div>
+        <div id="next"></div>
+        <script>
+            var oContainer = document.getElementById('container');
+            var oPrev  = document.getElementById('prev'),
+                    oNext = document.getElementById('next');
+
+            var sum = 0;
+            for(var i=0;i<24; i++){
+                var oImg = new Image();
+                oImg.onload = function(){
+                    sum++;
+                    if(sum == 48 ){
+                        loadSuccess()
+                    }
+                }
+                oImg.src = 'img/'+(i+1)+'.jpg';
+            }
+
+            for(var i=0;i<24; i++){
+                var oImg = new Image();
+                oImg.onload = function(){
+                    sum++;
+                    if(sum == 48 ){
+                        loadSuccess()
+                    }
+
+                }
+                oImg.src = 'img/thumbs/'+(i+1)+'.jpg';
+            }
+
+            var index = 0;
+            var hangWidth = (oContainer.offsetWidth - 6 * 125)/7;
+            var lieHeight = (oContainer.offsetHeight - 4 * 125)/5;
+
+            function loadSuccess(){
+                for(var i = 0;i<4 ;i++){
+                    for(var j = 0;j<6;j++){
+                        var oDiv = document.createElement('div');
+                        oDiv.className = 'img';
+                        oDiv.pos = {
+                            //计算每张图片的目标位置
+                            left: hangWidth + j*(125 + hangWidth),
+                            top: lieHeight + i*(125 + lieHeight)
+                        };
+                        oDiv.hangLie={
+                            hang:j,
+                            lie:i
+                        };
+                        oDiv.imgIndex = index;
+                        oDiv.style.background = 'url(img/thumbs/'+(index+1)+'.jpg)';
+                        oDiv.innerHTML = '<span></span>';
+                        oDiv.onclick = fn;
+                        oContainer.appendChild(oDiv);
+                        index++;
+                    }
+                }
+                var aDiv =  oContainer.getElementsByTagName('div');
+                var timer = setInterval(function(){
+                    index--;
+                    aDiv[index].style.left = aDiv[index].pos.left + 'px';
+                    aDiv[index].style.top = aDiv[index].pos.top + 'px';
+                    aDiv[index].style.WebkitTransform = "rotate("+ parseInt(Math.random()*40-20)+"deg)";
+                    if(index == 0){
+                        clearInterval(timer);
+                    }
+                },100)
+
+
+                var bFlag = true;
+
+                function fn(){
+                    if(bFlag){
+                        var width = (oContainer.offsetWidth - 750)/2;
+                        var height = (oContainer.offsetHeight - 500)/2;
+                        for(var i=0;i<24;i++){
+                            aDiv[i].style.left = aDiv[i].hangLie.hang * 125 + width +'px';
+                            aDiv[i].style.top = aDiv[i].hangLie.lie * 125 + height +'px';
+                            aDiv[i].style.WebkitTransform = "rotate(0deg)";
+                            aDiv[i].style.border = "1px solid #fff";
+
+                            var oSpan = aDiv[i].getElementsByTagName('span')[0];
+                            oSpan.style.opacity = 1;
+
+                            var spanLeft = -aDiv[i].hangLie.hang * 125;
+                            var spanTop = -aDiv[i].hangLie.lie * 125;
+                            oSpan.style.background = 'url(img/'+(this.imgIndex+1)+'.jpg) '+spanLeft+'px '+spanTop+'px no-repeat';
+                        }
+                        oPrev.style.display = 'block';
+                        oNext.style.display = 'block';
+
+                    }else{
+                        for(var i=0;i<24;i++){
+                            aDiv[i].style.left = aDiv[i].pos.left + 'px';
+                            aDiv[i].style.top = aDiv[i].pos.top + 'px';
+                            aDiv[i].style.WebkitTransform = "rotate("+ parseInt((Math.random() * 40 - 20))+"deg)";
+                            aDiv[i].style.border = "5px solid #fff";
+                            var oSpan = aDiv[i].getElementsByTagName('span')[0];
+                            oSpan.style.opacity = 0;
+                        }
+                        oPrev.style.display = 'none';
+                        oNext.style.display = 'none';
+                    }
+                    bFlag = !bFlag;
+                }
+                oPrev.onclick = oNext.onclick = function(){
+                    if(this == oNext){
+                        index++;
+                        if( index==aDiv.length){
+                            index = 0
+                        }
+                    }
+                    else{
+                        index--;
+                        if( index== -1){
+                            index = aDiv.length-1
+                        }
+                    }
+                    for(var i=0;i<24;i++){
+                        var oSpan = aDiv[i].getElementsByTagName('span')[0];
+
+                        var spanLeft = -aDiv[i].hangLie.hang * 125;
+                        var spanTop = -aDiv[i].hangLie.lie * 125;
+                        oSpan.style.background = 'url(img/'+(index+1)+'.jpg) '+spanLeft+'px '+spanTop+'px no-repeat';
+                    }
+
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
