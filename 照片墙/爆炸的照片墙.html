@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            html{
+                width:100%;
+                height:100%;
+            }
+            body{
+                width:100%;
+                height:100%;
+            }
+            #container{
+                width:100%;
+                height:100%;
+                overflow: hidden;
+                position:relative;
+                -webkit-perspective: 800px;
+                -webkit-transform-style:preserve-3d ;
+                background: url('img/back.jpg');
+            }
+            #container .img{
+                width:750px;
+                height:500px;
+                position: absolute;
+                top:100px;
+                left:50%;
+                margin-left: -375px;
+              /*  -webkit-transform-style:preserve-3d ;*/
+            }
+            #container span{
+                width:125px;
+                height:125px;
+                position:absolute;
+                -webkit-transition: all .5s ease-in-out;
+                opacity: 0;
+            }
+            #container .first{
+                width:750px;
+                height:500px;
+                position: absolute;
+                top:100px;
+                left:50%;
+                margin-left: -375px;
+            }
+            #container .first span{
+                opacity: 1;
+            }
+            #bang,#zhuan{
+                width:80px;
+                height:30px;
+                color:#fff;
+                text-align: center;
+                line-height: 30px;
+                font-size: 14px;
+                background: gray;
+                position:absolute;
+                left:50%;
+                top:650px;
+                cursor:pointer;
+            }
+            #zhuan{
+                margin-left: -260px;
+            }
+            #bang{
+                margin-left: 200px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+
+        </div>
+        <div id="zhuan">翻转</div>
+        <div id="bang">爆炸</div>
+        <script>
+            var oContainer = document.getElementById('container');
+            var oZhuan = document.getElementById('zhuan'),
+                    oBang = document.getElementById('bang');
+            var sum = 0;
+            for( var i=0;i<24;i++){
+                var oImg = new Image();
+                oImg.onload = function(){
+                    sum++;
+                    if(sum==24){
+                        loadSuccess()
+                    }
+                };
+                oImg.src = 'img/'+(i+1)+'.jpg'
+            }
+
+
+            function loadSuccess(){
+                for(var i=0;i<24;i++){
+                        var oDiv = document.createElement('div');
+                        oDiv.className = 'img';
+                        oContainer.appendChild(oDiv);
+                        var aDiv = oContainer.getElementsByTagName('div');
+                        aDiv[0].className = 'first';
+                        for(var m=0;m<4;m++){
+                            for(var n=0;n<6;n++){
+                                var oSpan = document.createElement('span');
+                                oDiv.appendChild(oSpan);
+                                oSpan.style.top = m*125 +'px';
+                                oSpan.style.left = n*125 +'px';
+                                oSpan.style.background = 'url( img/'+(i+1)+'.jpg) '+(-n*125)+'px '+(-m*125)+'px no-repeat';
+                            }
+                    }
+                }
+                var iNow = 0;
+                var iNow1 = 0;
+                oZhuan.onclick = function(){
+                    iNow++;
+                    iNow1++
+                    if(iNow == 24){
+                        iNow = 1
+                    }
+                    if(iNow1 == 23){
+                        iNow1 = 1
+                    }
+                    console.log(iNow);
+                    var arr = [];
+                    for(var i=0;i<24;i++){
+                        arr.push(i);
+                    }
+                    arr.reverse();
+
+                    var timer = setInterval(function(){
+
+                        var aSpan = aDiv[iNow-1].getElementsByTagName('span');
+                        var aSpan1 = aDiv[iNow1].getElementsByTagName('span');
+
+                        var random = arr.pop();
+                        aSpan[random].style.WebkitTransform = 'rotateY(360deg)';
+                        aSpan[random].style.opacity = '0';
+                        aSpan1[random].style.opacity = '1';
+                        if(random == 23){
+                            clearInterval(timer)
+                        }
+                    },10);
+                }
+                oBang.onclick = function(){
+                    iNow++;
+                    iNow1++;
+                    if(iNow == 24){
+                        iNow = 1
+                    }
+                    if(iNow1 == 23){
+                        iNow1 = 1
+                    }
+                    var aSpan = aDiv[iNow-1].getElementsByTagName('span');
+                    var aSpan1 = aDiv[iNow1].getElementsByTagName('span');
+                    for(var i=0;i<24;i++){
+                        aSpan[i].style.WebkitTransform= 'rotateY('+(Math.random()*2000-1000)+'deg) translateX('+(Math.random()*2000-1000)+'px) translateY('+(Math.random()*180-90)+'px)';
+                        aSpan[i].style.opacity = '0';
+                        aSpan1[i].style.opacity = '1';
+
+                    }
+                }
+            }
+
+        </script>
+    </body>
+</html>
