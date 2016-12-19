@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            /*float:left;*/
+            width:300px;
+            height:300px;
+            margin:100px auto;
+        }
+        span{
+            float:left;
+            width:60px;
+            height:30px;
+            background:gray;
+            margin-right:10px;
+            cursor:pointer;
+            text-align: center;
+            line-height:30px ;
+            color:#fff;
+        }
+        #msg{
+            width:300px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <span id="up">向上</span>
+        <span id="down">向下</span>
+        <div>
+            <textarea name="message" id="msg" cols="30" rows="10">调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动调整文本域高度多行滚动</textarea>
+        </div>
+    </div>
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            var $msg = $('#msg');
+           $('#up').on('click',function(){
+               if(!$msg.is(':animated')){
+                   $msg.animate({scrollTop: '-=50'},500);
+               }
+           })
+            $('#down').on('click',function(){
+                if(!$msg.is(':animated')){
+                    $msg.animate({scrollTop: '+=50'},500);
+                }
+            })
+        });
+    </script>
+</body>
+</html>
