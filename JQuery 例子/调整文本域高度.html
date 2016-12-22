@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            #container{
+                /*float:left;*/
+                width:300px;
+                height:300px;
+                margin:100px auto;
+            }
+            span{
+               float:left;
+                width:60px;
+                height:30px;
+                background:gray;
+                margin-right:10px;
+                cursor:pointer;
+                text-align: center;
+                line-height:30px ;
+                color:#fff;
+            }
+            #msg{
+                width:300px;
+                height:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <span id="bigger">放大</span>
+            <span id="smaller">缩小</span>
+            <div>
+                <textarea name="message" id="msg" cols="30" rows="10">调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度调整文本域高度</textarea>
+            </div>
+        </div>
+        <script src="jquery-1.12.4.js"></script>
+        <script>
+            $(function(){
+                var $msg = $('#msg');
+                /*$('#bigger').on('click',function(){
+                    $msg.height( $msg.height() + 50 );
+                    if($msg.height()>500){
+                        $msg.height(500)
+                    }
+                });*/
+                $('#bigger').on('click',function(){
+                    if(!$msg.is(":animated")) {
+                        if ($msg.height() < 500) {
+                            $msg.animate({height: "+=50"}, 400);
+                        }
+                    }
+                });
+                $('#smaller').on('click',function(){
+                    $msg.height( $msg.height() - 50);
+                    if($msg.height()<50){
+                        $msg.height(50)
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
