@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            #container{
+                width:1000px;
+                height:550px;
+                border:1px solid #000;
+                margin:50px auto;
+            }
+            #ground{
+                width:1000px;
+                height:500px;
+                position: relative;
+            }
+            #footer{
+                width:1000px;
+                height:50px;
+            }
+            #footer #active{
+                float:left;
+                line-height: 50px;
+            }
+            #button{
+                float:right;
+            }
+
+            .block{
+                width:20px;
+                height:20px;
+                background: #00A5FF;
+                float:left;
+            }
+            .snake-block{
+                background: #F296B2;
+                position: absolute;
+            }
+
+            .food-block{
+                background: #CDE074;
+                position: absolute;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="ground">
+
+            </div>
+            <div id="footer">
+                <div id="active">
+                    YOLO hahahaha
+                </div>
+                <div id="button">
+                    <button>开始</button>
+                    <button>暂停</button>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            var iGround = document.getElementById('ground');
+            var direction = 'right';
+            /* 创建操场 */
+            for(var i=0; i<50*25 ;i++){
+                var iGblock = document.createElement('div');
+                iGblock.className = 'block';
+                iGround.appendChild(iGblock);
+            }
+
+            /*创建蛇*/
+            var snakeBody = [];
+            for(var i=0; i<3; i++){
+                var oSblock =  document.createElement('div');
+                oSblock.style.left = 60-i*20 + 'px';
+                oSblock.style.top = 60 + 'px';
+                oSblock.className = 'block snake-block';
+                snakeBody.push(oSblock);
+                iGround.appendChild(oSblock);
+            }
+
+            /*创建食物*/
+            var bFlag =false;
+            var iFoodLeft;
+            var iFoodTop;
+
+            do{
+                bFlag =false;
+
+                iFoodLeft = parseInt(Math.random()*50)*20;
+                iFoodTop = parseInt(Math.random()*25)*20;
+                for(var i=0 ; i<snakeBody.length ; i++){
+                    if(iFoodLeft == snakeBody[i].offsetLeft && iFoodTop == snakeBody[i].offsetTop ){
+                        bFlag = true
+                    }
+                }
+            }while(bFlag);
+            var oFood =document.createElement('div');
+            oFood.className = 'block food-block';
+            oFood.style.left = iFoodLeft + 'px';
+            oFood.style.top = iFoodTop + 'px';
+            iGround.appendChild(oFood);
+
+
+
+
+
+            var next = null;
+            function move() {
+                var snakeHead = snakeBody[0];
+                //找到下一个该去的位置
+                if (direction == 'right') {
+                    next = {
+                        top: snakeHead.offsetTop,
+                        left: snakeHead.offsetLeft + 20
+                    }
+                } else if (direction == 'left') {
+                    next = {
+                        top: snakeHead.offsetTop,
+                        left: snakeHead.offsetLeft - 20
+                    }
+                } else if (direction == 'top') {
+                    next = {
+                        top: snakeHead.offsetTop - 20,
+                        left: snakeHead.offsetLeft
+                    }
+                } else if (direction == 'down') {
+                    next = {
+                        top: snakeHead.offsetTop + 20,
+                        left: snakeHead.offsetLeft
+                    }
+                }
+                var oDiv = snakeBody.pop();
+                oDiv.style.left = next.left + 'px';
+                oDiv.style.top = next.top + 'px';
+                snakeBody.unshift(oDiv);
+            }
+
+            setInterval(move,200);
+
+
+            document.onkeydown = function(e){
+                e = e || window.event;
+                var kc = e.which || e.keyCode;
+                if(kc == 37 && direction!='right'){
+                    direction = 'left';
+                }else if(kc == 38 && direction!='down'){
+                    direction = 'top';
+                }else if(kc == 39 && direction!='left'){
+                    direction = 'right';
+                }else if(kc == 40 && direction!='top'){
+                    direction = 'down';
+                }
+            }
+
+            /*蛇吃食物 身体增长*/
+
+            if(next.top == oFood.offsetHeight && next.left == oFood.offsetLeft ){
+                oFood.className = 'block snake-block';
+
+            }
+
+
+        </script>
+    </body>
+</html>

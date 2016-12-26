@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            html{
+                width:100%;
+            }
+            body{
+                width:100%;
+            }
+
+            #header,#nav,#footer{
+                height:50px;
+                background: lightgray;
+                text-align: center;
+                line-height: 50px;
+                width: 960px;
+                margin:0 auto;
+            }
+            #nav{
+                margin-top:20px;
+            }
+
+             #img {
+                 width: 960px;
+                 margin:20px auto;
+             }
+             #img img{
+                width:960px;
+            }
+            #text{
+                width:960px;
+                margin:20px auto;
+            }
+            #left{
+                background: green;
+                width:600px;
+                height:200px;
+                float:left;
+            }
+            #right{
+                background: yellow;
+                float:right;
+                width:340px;
+                height:200px;
+            }
+            #left,#right{
+                display:table;
+            }
+            #left p,#right p{
+                display:table-cell;
+                vertical-align:middle;
+                text-align:center;
+            }
+            #footer{
+                clear:both;
+            }
+            @media (max-width:960px) {
+               #header,#footer,#nav{
+                   width:100%;
+               }
+                #img{
+                    width:100%
+                }
+                #img img{
+                    width:100%
+                }
+                #text{
+                    width: 100%;
+                }
+                #left{
+                    width: 61%;
+                }
+                #right{
+                    width:36%;
+                }
+            }
+            @media (max-width:480px) {
+                #text {
+                    width: 100%;
+                }
+                #img{
+                    width:100%;
+                }
+                #img img{
+                    width:100%
+                }
+                #left, #right {
+                    width: 100%;
+                    float: none;
+                }
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="header">页头</div>
+        <div id="nav">标题</div>
+        <div id="img">
+            <img src="img/2.jpg" alt=""/>
+        </div>
+        <div id="text">
+            <div id="left">
+                <p>klsjeicmehiuvnnvjghjvnjvnd kduvhkv dfjvioncehuvpvnfkj dihd vnd vsilebf ck dfveivkd ckd vdsifvhefnv ekivsdohvnk uhvds vh  nrkj ;oudh ffhnrvn oi urn r o ro r hr rhrbhortj n
+                </p>
+            </div>
+            <div id="right">
+                <p>
+                    ;lgmbf    lsmfgb  f mf fkgm 'osak;  m rg bl mb mb ;rmb m pr ms; sb  ni  o ns sf;os nrilbhu bgu;rigjo io rg; oji r
+                </p>
+            </div>
+        </div>
+        <div id="footer">页尾</div>
+    </body>
+</html>
