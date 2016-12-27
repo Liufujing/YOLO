@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            ul{
+                list-style: none;
+            }
+            #container{
+                width:660px;
+                height:359px;
+                margin: 100px auto;
+                overflow: hidden;
+                position:relative;
+            }
+            ul{
+                width:3200px;
+                height:359px;
+                position: absolute;
+            }
+            ul #one{
+                width:500px;
+                height:359px;
+            }
+            ul li{
+                width: 40px;
+                height:359px;
+                float:left;
+                position: relative;
+                -webkit-transition: all 1s ease-in-out;
+            }
+            ul img{
+                width:500px;
+                height:359px;
+            }
+            ul li div{
+                width:500px;
+                height:20px;
+                background: #000;
+                opacity: 0.5;
+                position: absolute;
+                bottom:0;
+                color: #fff;
+                font-size: 14px;
+            }
+            #container ul:hover li{
+                width:40px;
+            }
+            #container ul li:hover{
+                width:500px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <ul>
+                <li id="one">
+                    <img src="bigbang/1.jpeg" alt=""/>
+                    <div>第1张</div>
+                </li>
+                <li>
+                    <img src="bigbang/2.jpg" alt=""/>
+                    <div>第2张</div>
+                </li>
+                <li>
+                    <img src="bigbang/3.jpeg" alt=""/>
+                    <div>第3张</div>
+                </li>
+                <li>
+                    <img src="bigbang/4.png" alt=""/>
+                    <div>第4张</div>
+                </li>
+                <li>
+                    <img src="bigbang/5.jpeg" alt=""/>
+                    <div>第5张</div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
