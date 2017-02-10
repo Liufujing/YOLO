@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>登录弹出层</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            display: block;
+        }
+        body{
+            background: #e0e0e0;
+        }
+        .lfj-container{
+            background: #fff;
+            width:860px;
+            height:540px;
+            margin:50px auto;
+            border-radius:15px;
+        }
+        .login-left{
+            width:475px;
+            height:468px;
+            margin:40px 0 32px 50px;
+            float:left;
+            border-right:1px solid #e7e9e9;
+        }
+        .left-center{
+            width:428px;
+            height: 468px;
+        }
+        h1{
+            font-weight: 700;
+            font-size:24px;
+            color:#2d3b4a;
+            text-align: center;
+        }
+        .login-left h1{
+            width:428px;
+        }
+
+        .btn-login{
+            margin:20px 0 10px 15px;
+            padding:18px 66px 16px 67px;
+            border:1px solid #9ea8b3;
+            text-align: center;
+            color:#9ea8b3;
+            border-radius: 8px;
+            cursor:pointer;
+            font-size: 14px;;
+            font-weight: 600;
+        }
+        .btn-login:hover{
+            border:1px solid #30b295;
+            color:#30b295;
+        }
+        .btn-login.left{
+            float:left;
+        }
+        .btn-login.right{
+            float:right;
+        }
+        .login-msg{
+            width:428px;
+            padding:22px 0 7px 0;
+            border-bottom:1px solid #9ea8b3;
+            clear:both;
+
+        }
+        .login-msg .pic{
+            width:114px;
+            height:40px;
+            float:left;
+            text-align: center;
+            padding-top: 8px;
+        }
+        .pic img{
+            width:24px;
+            height:24px;
+        }
+        .login-msg input{
+            display:block;
+            width:230px;
+            height:40px;
+            border:0;
+            color:#9ea8b3;
+            font-size:18px;
+            font-weight: 600;
+           /* outline:none;*/
+            cursor:pointer ;
+        }
+        .btn-big{
+            width:428px;
+            height:60px;
+            background: #39c6a7;
+            color:#fff;
+            cursor: pointer;
+            font-size:24px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 8px;
+            margin-top:50px;
+        }
+
+        .login-right{
+            width:284px;
+            height:463px;
+            margin:45px 0 32px 50px;
+            float:right;
+        }
+        .right-center{
+            width:212px;
+            height:463px;
+        }
+        .login-right h1{
+            width:212px;
+        }
+        .login-qw{
+            width:210px;
+            margin:56px 0 0 10px;
+        }
+        .login-qw a{
+            width:66px;
+            height:66px;
+        }
+        .login-qw .qq{
+            width:66px;
+            height:66px;
+            background: url("img/login.png") -159px 0 no-repeat;
+        }
+        .login-qw .weixin{
+            width:66px;
+            height:66px;
+            background: url("img/login.png") -245px 0 no-repeat;
+        }
+
+    </style>
+    <body>
+        <div class="lfj-container">
+
+            <!--左侧文字开始-->
+            <div class="login-left">
+                <div class="left-center">
+                    <h1>&nbsp登录账号</h1>
+                    <div>
+                        <a href="#">
+                            <span class="btn-login left">账号登录</span>
+                        </a>
+                        <a href="#">
+                            <span class="btn-login right">短信登录</span>
+                        </a>
+                    </div>
+                    <div class="login-msg number">
+                        <div class="pic">
+                            <img src="img/phone.png" alt=""/>
+                        </div>
+                        <input type="text" value="手机号码"/>
+                    </div>
+                    <div class="login-msg phone-code">
+                        <div class="pic">
+                            <img src="img/set.png" alt=""/>
+                        </div>
+                        <input type="text" value="手机验证码"/>
+                    </div>
+                    <div class="login-msg code">
+                        <div class="pic">
+                            <img src="img/code.png" alt=""/>
+                        </div>
+                        <input type="text" value="验证码"/>
+                    </div>
+                    <a href="#"><div class="btn-big">登&nbsp&nbsp录</div></a>
+                </div>
+            </div>
+            <!--左侧文字结束-->
+
+            <!--右侧文字开始-->
+            <div class="login-right">
+                <div class="right-center">
+                    <h1>合作网站账号登录</h1>
+                    <div>
+                        <div class="login-qw">
+                            <a href="#"><div class="qq"></div></a>
+                            <span><a href="">QQ账号登录</a></span>
+                        </div>
+                        <div class="login-qw">
+                            <a href="#"><div class="weixin"></div></a>
+                            <span><a href="">微信账号登录</a></span>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#"><span>没有账号？马上注册》</span></a>
+                    </div>
+                </div>
+            </div>
+            <!--右侧文字结束-->
+        </div>
+    </body>
+</html>
