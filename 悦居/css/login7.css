@@ -1,0 +1,179 @@
+*{
+    margin: 0;
+    padding:0;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    display: block;
+}
+body{
+    background: #e0e0e0;
+}
+.dialog{
+    background: #fff;
+    width:860px;
+    height:540px;
+    margin:50px auto;
+    border-radius:15px;
+    position: relative;
+}
+.close{
+    width:32px;
+    height:32px;
+    position:absolute;
+    top: 30px;
+    right:30px;
+    background: url("../img/login.png") 0 -248px no-repeat;
+}
+.login-left{
+    width:475px;
+    height:468px;
+    margin:40px 0 32px 50px;
+    float:left;
+    border-right:1px solid #e7e9e9;
+}
+.left-center{
+    width:428px;
+    height: 468px;
+}
+h1{
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+    font-size:24px;
+    color:#2d3b4a;
+    text-align: center;
+}
+.login-left h1{
+    width:428px;
+}
+
+.btn-login{
+    margin:0 0 10px 15px;
+    padding:18px 66px 16px 67px;
+    border:1px solid #9ea8b3;
+    text-align: center;
+    color:#9ea8b3;
+    border-radius: 8px;
+    cursor:pointer;
+    font-size: 14px;;
+    font-weight: 600;
+}
+.btn-login:hover{
+    border:1px solid #30b295;
+    color:#30b295;
+}
+.btn-login.left{
+    float:left;
+}
+.btn-login.right{
+    float:right;
+}
+.msg{
+    width:428px;
+    border-bottom:1px solid #dde2e6;
+    clear:both;
+}
+.login{
+    padding:22px 0 7px 0;
+}
+.regist{
+    padding:10px 0 4px 0;
+}
+.msg .pic{
+    width:114px;
+    height:40px;
+    float:left;
+    text-align: center;
+    padding-top: 8px;
+}
+.pic img{
+    width:24px;
+    height:24px;
+}
+.msg input{
+    width:200px;
+    height:40px;
+    border:0;
+    color:#9ea8b3;
+    font-size:18px;
+    font-weight: 600;
+    /* outline:none;*/
+    cursor:pointer ;
+}
+
+/*ÑéÖ¤ÂëÍ¼Æ¬*/
+.code{
+   width:100px;
+    height:35px;
+    float: right;
+    background: url("../img/login.png") -38px 0 no-repeat;
+}
+
+.btn-big{
+    width:428px;
+    height:60px;
+    background: #39c6a7;
+    color:#fff;
+    cursor: pointer;
+    font-size:24px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 8px;
+    margin-top:50px;
+}
+
+.login-right{
+    width:284px;
+    height:463px;
+    margin:45px 0 32px 50px;
+    float:right;
+}
+.right-center{
+    width:212px;
+    height:463px;
+}
+.login-right h1{
+    width:212px;
+}
+.login-qw{
+    width:210px;
+    height:66px;
+    margin:56px 0 0 10px;
+    line-height: 66px;
+}
+/* .login-qw a{
+     width:66px;
+     height:66px;
+ }*/
+.login-qw .qq{
+    width:66px;
+    height:66px;
+    background: url("../img/login.png") -159px 0 no-repeat;
+}
+.login-qw .weixin{
+    width:66px;
+    height:66px;
+    background: url("../img/login.png") -245px 0 no-repeat;
+}
+.qw-pic{
+    width:66px;
+    height:66px;
+    float:left;
+}
+.qw-text{
+    width:112px;
+    font-size: 18px;
+
+    float:right
+}
+.qw-text a{
+    color:#8b959f;
+}
+.text-bottom{
+    margin: 110px 0 0 35px;
+}
+
